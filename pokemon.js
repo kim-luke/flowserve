@@ -1,15 +1,11 @@
-const express = require("express");
+const express = require('express');
 const app = express();
+const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => res.send("Hello, world!"));
+// console.log that your server is up and running
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
-const PORT = 4000;
-app.listen(PORT, (error) => {
-  // This is important!
-  // Without this, any startup errors will silently fail
-  // instead of giving you a helpful error message.
-  if (error) {
-    throw error;
-  }
-  console.log(`App is now available on http://localhost:${PORT}!`);
+// create a GET route
+app.get('/express_backend', (req, res) => {
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
