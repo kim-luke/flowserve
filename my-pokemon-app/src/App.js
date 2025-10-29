@@ -25,11 +25,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        Pokemon Finder
       </header>
-      <p className='App-intro'>
-          {backEndData ? backEndData : 'There is no data'}
-        </p>
     </div>
   );
 }
