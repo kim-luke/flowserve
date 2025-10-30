@@ -11,6 +11,8 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSearchValue('');
+    setShinyToggle(false);
     await callPokemonAPI();
   }
 
