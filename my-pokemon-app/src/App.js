@@ -1,11 +1,13 @@
 import './App.css';
 import { useState } from 'react';
-import { TextField, Grid, Button, Box } from '@mui/material';
+import { TextField, Grid, Button, Box, Switch, FormControlLabel } from '@mui/material';
+import PokemonDisplay from './Components/PokemonDisplay';
 
 function App() {
 
   const [pokemonData, setPokemonData] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [shinyToggle, setShinyToggle] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,7 +29,6 @@ function App() {
 
       const data = await response.json();
       setPokemonData(data);
-      debugger;
 
     } catch (err) {
       console.log('Pokemon not found :(')
@@ -60,6 +61,29 @@ function App() {
           </Button>
         </Box>
       </Grid>
+
+      {pokemonData &&
+        <PokemonDisplay 
+          pokemonData={pokemonData} 
+          shinyToggle={shinyToggle}
+        />
+      }
+
+      {pokemonData && (
+        <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={shinyToggle}
+                onChange={() => setShinyToggle(prev => !prev)}
+                color="secondary"
+              />
+            }
+            label="Show Shiny"
+            sx={{ marginTop: 2 }}
+          />
+        </Grid>
+      )}
     </div>
   );
 }
